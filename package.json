@@ -1,0 +1,29 @@
+{
+  "name": "youtube-comment-api",
+  "version": "0.0.1",
+  "description": "Youtube comment API",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philbot9/youtube-comment-api.git"
+  },
+  "keywords": [
+    "youtube",
+    "comment",
+    "api"
+  ],
+  "author": "Philip Klostermann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philbot9/youtube-comment-api/issues"
+  },
+  "homepage": "https://github.com/philbot9/youtube-comment-api#readme",
+  "dependencies": {
+    "blue-tape": "^0.1.10",
+    "debug": "^2.2.0",
+    "native-promise-only": "^0.8.1"
+  }
+}
