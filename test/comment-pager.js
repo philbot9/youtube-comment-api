@@ -77,12 +77,16 @@ describe('Comment Pager', function () {
     });
   });
 
-  it('should include the video comment count', function (done) {
+  it('should include video information', function (done) {
     this.timeout(20000);
     getCommentsPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoCommentCount').that.is.a('number');
       expect(page.videoCommentCount).to.be.above(0);
+      expect(page).to.have.a.property('videoTitle').that.is.a('string');
+      expect(page.videoTitle.length).to.be.above(0);
+      expect(page).to.have.a.property('videoThumbnail').that.is.a('string');
+      expect(page.videoThumbnail.length).to.be.above(0);
       done();
     });
   });

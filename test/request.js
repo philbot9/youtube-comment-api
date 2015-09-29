@@ -19,7 +19,7 @@ describe('Request', function () {
     expect(request.CookieJar).to.be.an('object');
   });
 
-  it('function \'get\' should send a GET XMLHttpRequest', function (done) {
+  it('function \'get\' should send a GET request', function (done) {
     this.timeout(10000);
     request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (responseText) {
       expect(responseText).to.be.a('string');
@@ -48,7 +48,7 @@ describe('Request', function () {
       .which.is.an('object');
   });
 
-  it('function \'post\' should send a POST XMLHttpRequest', function (done) {
+  it('function \'post\' should send a POST request', function (done) {
     this.timeout(10000);
     getSessionToken('MfM7Y9Pcdzw').then(function (sessionToken) {
       request.post('https://www.youtube.com/comment_ajax?action_load_comments=1&order_by_time=True&filter=MfM7Y9Pcdzw', {
