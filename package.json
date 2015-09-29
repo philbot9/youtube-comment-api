@@ -4,7 +4,8 @@
   "description": "Youtube comment API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "lint": "jshint --config .jshintrc index.js test/*.js lib/*.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "chai": "^3.3.0",
+    "jshint": "^2.8.0",
     "mocha": "^2.3.3"
   }
 }

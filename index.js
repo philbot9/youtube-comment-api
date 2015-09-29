@@ -1,15 +1,13 @@
 var getCommentPage = require('lib/comment-pager');
 
-module.exports = function(videoID, pageToken, cb) {
+module.exports = function (videoID, pageToken, cb) {
   if (!videoID) {
     throw new Error('Cannot fetch comment page. No videoID provided.');
   }
-
-  getCommentPage(videoID, pageToken).then(function(page) {
+  getCommentPage(videoID, pageToken).then(function (page) {
     if (!page) {
       throw new Error('Error fetching comment page from YouTube.');
     }
-
     return {
       pageToken: pageToken,
       nextPageToken: page.nextPageToken,
