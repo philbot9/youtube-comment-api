@@ -4,7 +4,7 @@
   "description": "Youtube comment API",
   "main": "index.js",
   "scripts": {
-    "test": "tape test"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,13 @@
   },
   "homepage": "https://github.com/philbot9/youtube-comment-api#readme",
   "dependencies": {
-    "blue-tape": "^0.1.10",
+    "cheerio": "^0.19.0",
     "debug": "^2.2.0",
-    "native-promise-only": "^0.8.1"
+    "native-promise-only": "^0.8.1",
+    "xmlhttprequest-cookie": "^0.9.2"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3"
   }
 }

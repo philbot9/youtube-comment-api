@@ -11,7 +11,7 @@ module.exports = function(videoID, pageToken, cb) {
     }
 
     return {
-      pageToken: req.body.pageToken,
+      pageToken: pageToken,
       nextPageToken: page.nextPageToken,
       videoCommentCount: page.videoCommentCount,
       comments: page.comments
