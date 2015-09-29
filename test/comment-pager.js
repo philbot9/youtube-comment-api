@@ -12,14 +12,13 @@ describe('Comment Pager', function () {
     }).to.throw(Error);
   });
 
-  it('should give an error (400) for an invalid video ID', function (done) {
+  it('should give an error for an invalid video ID', function (done) {
     this.timeout(20000);
     getCommentsPage('fakeID', null).then(function (page) {
       expect(page).not.to.exist;
       done();
     }).catch(function (error) {
       expect(error).to.exist;
-      expect(error).to.have.a.property('status').equal(400);
       done();
     });
   });
@@ -45,7 +44,6 @@ describe('Comment Pager', function () {
           expect(c.replies).to.have.length.above(0);
         }
       });
-
       done();
     });
   });

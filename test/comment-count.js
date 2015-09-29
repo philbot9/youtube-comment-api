@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var cheerio = require('cheerio');
 var getCommentCount = require('../lib/comment-count');
+
 describe('Comment Count', function () {
   it('should export a function', function () {
     expect(require('../lib/comment-count')).to.be.a('function');

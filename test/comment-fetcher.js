@@ -14,14 +14,13 @@ describe('Comment API', function () {
     }).to.throw(Error);
   });
 
-  it('should give an error (400) for an invalid video ID', function (done) {
+  it('should give an error for an invalid video ID', function (done) {
     this.timeout(20000);
     fetchCommentsPage('fakeID', null).then(function (page) {
       expect(page).not.to.exist;
       done();
     }).catch(function (error) {
       expect(error).to.exist;
-      expect(error).to.have.a.property('status', 400);
       done();
     });
   });

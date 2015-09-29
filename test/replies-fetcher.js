@@ -21,26 +21,24 @@ describe('Replies API', function () {
     }).to.throw(Error);
   });
 
-  it('should give an error (400) for an invalid video ID', function (done) {
+  it('should give an error for an invalid video ID', function (done) {
     this.timeout(20000);
     fetchReplies('fakeId', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       expect(page).not.to.exist;
       done();
     }).catch(function (error) {
       expect(error).to.exist;
-      expect(error).to.have.a.property('status', 400);
       done();
     });
   });
 
-  it('should give an error (503) for an invalid comment ID', function (done) {
+  it('should give an error for an invalid comment ID', function (done) {
     this.timeout(20000);
     fetchReplies('eKEwL-10s7E', 'yadayada').then(function (page) {
       expect(page).not.to.exist;
       done();
     }).catch(function (error) {
       expect(error).to.exist;
-      expect(error).to.have.a.property('status', 503);
       done();
     });
   });
