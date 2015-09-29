@@ -16,7 +16,7 @@
     "comment",
     "api"
   ],
-  "author": "Philip Klostermann",
+  "author": "Philip Klostermann <philip.klostermann@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/philbot9/youtube-comment-api/issues"
