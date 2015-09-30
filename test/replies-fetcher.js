@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var cheerio = require('cheerio');
 var fetchReplies = require('../lib/replies-fetcher');
 
-describe('Replies API', function () {
+describe('Replies Fetcher', function () {
   it('should export a function', function () {
     expect(require('../lib/replies-fetcher')).to.be.a('function');
   });

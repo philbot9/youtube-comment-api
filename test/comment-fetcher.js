@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var cheerio = require('cheerio');
 var fetchCommentsPage = require('../lib/comment-fetcher.js');
 
-describe('Comment API', function () {
+describe('Comment Fetcher', function () {
   it('should export a function', function () {
     expect(require('../lib/comment-fetcher.js')).to.be.a('function');
   });
