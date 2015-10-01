@@ -1,14 +1,12 @@
 # Youtube Comment API
 
-**NOTE: Still a work in progress.**
+[![Build Status](https://travis-ci.org/philbot9/youtube-comment-api.svg?branch=master)](https://travis-ci.org/philbot9/youtube-comment-api)
 
 ## Purpose
 
-[Node.js](https://nodejs.org/) API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video on demand.
+A Node.js API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video on demand.
 
 **This project is in no way affiliated with YouTube.**
-
-[![Build Status](https://travis-ci.org/philbot9/youtube-comment-api.svg?branch=master)](https://travis-ci.org/philbot9/youtube-comment-api)
 
 ## Installation
 
