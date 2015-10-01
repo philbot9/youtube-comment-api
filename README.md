@@ -8,6 +8,8 @@
 
 **This project is in no way affiliated with YouTube.**
 
+[![Build Status](https://travis-ci.org/philbot9/youtube-comment-api.svg?branch=master)](https://travis-ci.org/philbot9/youtube-comment-api)
+
 ## Installation
 
 Install as a module via npm.
