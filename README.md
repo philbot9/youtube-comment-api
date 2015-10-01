@@ -65,7 +65,7 @@ fetchCommentPage('{videoID}', function (err, commentPage) {
 
 ## Result
 
-``` json
+```
 {
   pageToken: {{ page token of current page }},
   nextPageToken: {{ page token of next page }},
