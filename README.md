@@ -4,7 +4,17 @@
 
 ## Purpose
 
-API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video. **This project is in no way affiliated with YouTube.**
+[Node.js](https://nodejs.org/) API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video on demand.
+
+**This project is in no way affiliated with YouTube.**
+
+## Installation
+
+Install as a module via npm.
+
+```bash
+$ npm install youtube-comment-api
+```
 
 ## Usage
 
@@ -21,7 +31,7 @@ fetchCommentPage(videoID, pageToken, cb);
 | pageToken     | (optional) token of page to be requested |
 | callback      | (optional) callback function      |
 
-### With Promises
+### Promises API
 
 ``` javascript
 var fetchCommentPage = require('youtube-comment-api');
@@ -37,7 +47,7 @@ fetchCommentPage('{videoID}').then(function (commentPage) {
 });
 ```
 
-### With Callback
+### Callback API
 
 ``` javascript
 var fetchCommentPage = require('youtube-comment-api');
