@@ -3,6 +3,11 @@ var debug = require('debug')('youtube-comment-api');
 var getCommentPage = require('./lib/comment-pager');
 
 module.exports = function (videoID, pageToken, cb) {
+  if (!cb && pageToken && _.isFunction(pageToken)) {
+    cb = pageToken;
+    pageToken = null;
+  }
+
   var useCallback = !!cb && _.isFunction(cb);
   if (!videoID) {
     var e = new Error('Cannot fetch comment page. No video ID provided.');
