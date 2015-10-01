@@ -22,7 +22,7 @@ describe('Replies Fetcher', function () {
   });
 
   it('should give an error for an invalid video ID', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchReplies('fakeId', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       expect(page).not.to.exist;
       done();
@@ -33,7 +33,7 @@ describe('Replies Fetcher', function () {
   });
 
   it('should give an error for an invalid comment ID', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchReplies('eKEwL-10s7E', 'yadayada').then(function (page) {
       expect(page).not.to.exist;
       done();

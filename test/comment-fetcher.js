@@ -15,7 +15,7 @@ describe('Comment Fetcher', function () {
   });
 
   it('should give an error for an invalid video ID', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchCommentsPage('fakeID', null).then(function (page) {
       expect(page).not.to.exist;
       done();
@@ -26,7 +26,7 @@ describe('Comment Fetcher', function () {
   });
 
   it('should get a comments page without a page token', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchCommentsPage('eKEwL-10s7E', null).then(function (page) {
       expect(page).to.have.a.property('html');
       expect(page.html).to.be.a('string');
@@ -39,7 +39,7 @@ describe('Comment Fetcher', function () {
   });
 
   it('should get a different comments page with a page token', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchCommentsPage('eKEwL-10s7E', null).then(function (page1) {
       fetchCommentsPage('eKEwL-10s7E', page1.nextPageToken).then(function (page2) {
         expect(page1.html).to.not.equal(page2.html);
@@ -53,7 +53,7 @@ describe('Comment Fetcher', function () {
   });
 
   it('should return valid HTML for comments', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchCommentsPage('eKEwL-10s7E', null).then(function (page) {
       var $ = cheerio.load(page.html);
       expect($('.comment-item')).to.have.a.property('0');
@@ -62,7 +62,7 @@ describe('Comment Fetcher', function () {
   });
 
   it('should return different videos\' comments', function (done) {
-    this.timeout(20000);
+    this.timeout(30000);
     fetchCommentsPage('eKEwL-10s7E', null).then(function (page1) {
       expect(page1.html).to.exist;
       expect(page1.html).to.be.a('string');
