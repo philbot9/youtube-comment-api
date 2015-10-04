@@ -7,7 +7,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should support callback functions', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('pkwOrteyQtY', function (err, page) {
       expect(err).not.to.exist;
       expect(page).to.exist;
@@ -19,7 +19,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should return errors for callback functions', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('fakeID', function (err, page) {
       expect(err).to.exist;
       expect(page).not.to.exist;
@@ -28,7 +28,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should support promises', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('pkwOrteyQtY').then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoTitle').which.is.a('string');
@@ -39,7 +39,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should return errors for promises', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('fakeID').catch(function(err) {
       expect(err).to.exist;
       done();
@@ -54,7 +54,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should get a comments page without a page token', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('pkwOrteyQtY').then(function (page) {
       expect(page).to.have.a.property('comments').that.is.an('array');
       expect(page.comments).to.have.length.above(1);
@@ -79,7 +79,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should get a different comments page with a page token', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('pkwOrteyQtY', null).then(function (page1) {
       fetchCommentPage('pkwOrteyQtY', page1.nextPageToken).then(function (page2) {
         expect(page1).to.not.deep.equal(page2);
@@ -107,8 +107,8 @@ describe('YouTube Comment API', function () {
     });
   });
 
-  it('should get a different comments page with a page token using callbacks', function (done) {
-    this.timeout(30000);
+  it.only('should get a different comments page with a page token using callbacks', function (done) {
+    this.timeout(120000);
     fetchCommentPage('pkwOrteyQtY', function (err, page1) {
       fetchCommentPage('pkwOrteyQtY', page1.nextPageToken, function (err, page2) {
         expect(page1).to.not.deep.equal(page2);
@@ -137,7 +137,7 @@ describe('YouTube Comment API', function () {
   });
 
   it('should include video information', function (done) {
-    this.timeout(30000);
+    this.timeout(60000);
     fetchCommentPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoCommentCount').that.is.a('number');

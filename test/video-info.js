@@ -8,7 +8,7 @@ describe('Video Info', function () {
   });
 
   it('should fetch the video info', function (done) {
-    this.timeout(10000);
+    this.timeout(30000);
     fetchVideoInfo('eKEwL-10s7E').then(function (videoInfo) {
       expect(videoInfo).to.exist;
       expect(videoInfo).to.have.a.property('videoCommentCount').that.is.a('number');
