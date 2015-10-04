@@ -107,7 +107,7 @@ describe('YouTube Comment API', function () {
     });
   });
 
-  it.only('should get a different comments page with a page token using callbacks', function (done) {
+  it('should get a different comments page with a page token using callbacks', function (done) {
     this.timeout(120000);
     fetchCommentPage('pkwOrteyQtY', function (err, page1) {
       fetchCommentPage('pkwOrteyQtY', page1.nextPageToken, function (err, page2) {
