@@ -19,24 +19,22 @@ describe('Request', function () {
     expect(request.CookieJar).to.be.an('object');
   });
 
-  it('function \'get\' should send a GET request', function (done) {
+  it('function \'get\' should send a GET request', function () {
     this.timeout(30000);
-    request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (responseText) {
+    return request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (responseText) {
       expect(responseText).to.be.a('string');
       expect(responseText).to.have.length.above(1);
-      done();
     });
   });
 
-  it('function \'get\' should receive a cookie', function (done) {
+  it('function \'get\' should receive a cookie', function () {
     this.timeout(30000);
-    request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (res) {
+    return request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (res) {
       expect(request.CookieJar).to.have.a.property('_jar')
         .which.has.a.property('store')
         .which.has.a.property('idx')
         .which.has.a.property('youtube.com')
         .which.is.an('object');
-      done();
     });
   });
 
@@ -48,16 +46,15 @@ describe('Request', function () {
       .which.is.an('object');
   });
 
-  it('function \'post\' should send a POST request', function (done) {
+  it('function \'post\' should send a POST request', function () {
     this.timeout(30000);
-    getSessionToken('MfM7Y9Pcdzw').then(function (sessionToken) {
-      request.post('https://www.youtube.com/comment_ajax?action_load_comments=1&order_by_time=True&filter=MfM7Y9Pcdzw', {
+    return getSessionToken('MfM7Y9Pcdzw').then(function (sessionToken) {
+      return request.post('https://www.youtube.com/comment_ajax?action_load_comments=1&order_by_time=True&filter=MfM7Y9Pcdzw', {
         'session_token': sessionToken,
         'video_id': 'MfM7Y9Pcdzw'
       }).then(function (responseText) {
         expect(responseText).to.be.a('string');
         expect(responseText).to.have.length.above(1);
-        done();
       });
     });
   });

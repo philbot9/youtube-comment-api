@@ -6,43 +6,39 @@ describe('YouTube Comment API', function () {
     expect(require('../index')).to.be.a('function');
   });
 
-  it('should support callback functions', function (done) {
+  it('should support callback functions', function () {
     this.timeout(60000);
-    fetchCommentPage('pkwOrteyQtY', function (err, page) {
+    return fetchCommentPage('pkwOrteyQtY', function (err, page) {
       expect(err).not.to.exist;
       expect(page).to.exist;
       expect(page).to.have.a.property('videoTitle').which.is.a('string');
       expect(page).to.have.a.property('comments').which.is.a('array');
       expect(page.comments).to.have.length.above(0);
-      done();
     });
   });
 
-  it('should return errors for callback functions', function (done) {
+  it('should return errors for callback functions', function () {
     this.timeout(60000);
-    fetchCommentPage('fakeID', function (err, page) {
+    return fetchCommentPage('fakeID', function (err, page) {
       expect(err).to.exist;
       expect(page).not.to.exist;
-      done();
     });
   });
 
-  it('should support promises', function (done) {
+  it('should support promises', function () {
     this.timeout(60000);
-    fetchCommentPage('pkwOrteyQtY').then(function (page) {
+    return fetchCommentPage('pkwOrteyQtY').then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoTitle').which.is.a('string');
       expect(page).to.have.a.property('comments').which.is.a('array');
       expect(page.comments).to.have.length.above(0);
-      done();
     });
   });
 
-  it('should return errors for promises', function (done) {
+  it('should return errors for promises', function () {
     this.timeout(60000);
-    fetchCommentPage('fakeID').catch(function(err) {
+    return fetchCommentPage('fakeID').catch(function(err) {
       expect(err).to.exist;
-      done();
     });
   });
 
@@ -53,9 +49,9 @@ describe('YouTube Comment API', function () {
     }).to.throw(Error);
   });
 
-  it('should get a comments page without a page token', function (done) {
+  it('should get a comments page without a page token', function () {
     this.timeout(60000);
-    fetchCommentPage('pkwOrteyQtY').then(function (page) {
+    return fetchCommentPage('pkwOrteyQtY').then(function (page) {
       expect(page).to.have.a.property('comments').that.is.an('array');
       expect(page.comments).to.have.length.above(1);
       expect(page).to.have.a.property('nextPageToken').that.is.a('string');
@@ -74,13 +70,12 @@ describe('YouTube Comment API', function () {
           expect(c.replies).to.have.length.above(0);
         }
       });
-      done();
     });
   });
 
-  it('should get a different comments page with a page token', function (done) {
+  it('should get a different comments page with a page token', function () {
     this.timeout(60000);
-    fetchCommentPage('pkwOrteyQtY', null).then(function (page1) {
+    return fetchCommentPage('pkwOrteyQtY', null).then(function (page1) {
       fetchCommentPage('pkwOrteyQtY', page1.nextPageToken).then(function (page2) {
         expect(page1).to.not.deep.equal(page2);
         expect(page2).to.have.a.property('comments').that.is.an('array');
@@ -101,16 +96,14 @@ describe('YouTube Comment API', function () {
             expect(c.replies).to.have.length.above(0);
           }
         });
-
-        done();
       });
     });
   });
 
-  it('should get a different comments page with a page token using callbacks', function (done) {
+  it('should get a different comments page with a page token using callbacks', function () {
     this.timeout(120000);
-    fetchCommentPage('pkwOrteyQtY', function (err, page1) {
-      fetchCommentPage('pkwOrteyQtY', page1.nextPageToken, function (err, page2) {
+    return fetchCommentPage('pkwOrteyQtY', function (err, page1) {
+      return fetchCommentPage('pkwOrteyQtY', page1.nextPageToken, function (err, page2) {
         expect(page1).to.not.deep.equal(page2);
         expect(page2).to.have.a.property('comments').that.is.an('array');
         expect(page2.comments).to.have.length.above(1);
@@ -130,15 +123,13 @@ describe('YouTube Comment API', function () {
             expect(c.replies).to.have.length.above(0);
           }
         });
-
-        done();
       });
     });
   });
 
-  it('should include video information', function (done) {
+  it('should include video information', function () {
     this.timeout(60000);
-    fetchCommentPage('pkwOrteyQtY', null).then(function (page) {
+    return fetchCommentPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoCommentCount').that.is.a('number');
       expect(page.videoCommentCount).to.be.above(0);
@@ -146,7 +137,6 @@ describe('YouTube Comment API', function () {
       expect(page.videoTitle.length).to.be.above(0);
       expect(page).to.have.a.property('videoThumbnail').that.is.a('string');
       expect(page.videoThumbnail.length).to.be.above(0);
-      done();
     });
   });
 });

@@ -21,44 +21,38 @@ describe('Replies Fetcher', function () {
     }).to.throw(Error);
   });
 
-  it('should give an error for an invalid video ID', function (done) {
+  it('should give an error for an invalid video ID', function () {
     this.timeout(60000);
-    fetchReplies('fakeId', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
+    return fetchReplies('fakeId', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       expect(page).not.to.exist;
-      done();
     }).catch(function (error) {
       expect(error).to.exist;
-      done();
     });
   });
 
-  it('should give an error for an invalid comment ID', function (done) {
+  it('should give an error for an invalid comment ID', function () {
     this.timeout(60000);
-    fetchReplies('eKEwL-10s7E', 'yadayada').then(function (page) {
+    return fetchReplies('eKEwL-10s7E', 'yadayada').then(function (page) {
       expect(page).not.to.exist;
-      done();
     }).catch(function (error) {
       expect(error).to.exist;
-      done();
     });
   });
 
-  it('should get replies to a comment', function (done) {
+  it('should get replies to a comment', function () {
     this.timeout(60000);
-    fetchReplies('eKEwL-10s7E', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
+    return fetchReplies('eKEwL-10s7E', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       expect(page).to.have.a.property('html');
       expect(page.html).to.be.a('string');
       expect(page.html).to.have.length.above(1);
-      done();
     });
   });
 
-  it('should return valid HTML for replies', function (done) {
+  it('should return valid HTML for replies', function () {
     this.timeout(60000);
-    fetchReplies('eKEwL-10s7E', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
+    return fetchReplies('eKEwL-10s7E', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       var $ = cheerio.load(page.html);
       expect($('.comment-item')).to.have.a.property('0');
-      done();
     });
   });
 });

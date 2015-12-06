@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
 var getCommentsPage = require('../lib/comment-pager.js');
+
 describe('Comment Pager', function () {
   it('should export a function', function () {
     expect(require('../lib/comment-pager.js')).to.be.a('function');
@@ -12,20 +13,18 @@ describe('Comment Pager', function () {
     }).to.throw(Error);
   });
 
-  it('should give an error for an invalid video ID', function (done) {
+  it('should give an error for an invalid video ID', function () {
     this.timeout(60000);
-    getCommentsPage('fakeID', null).then(function (page) {
+    return getCommentsPage('fakeID', null).then(function (page) {
       expect(page).not.to.exist;
-      done();
     }).catch(function (error) {
       expect(error).to.exist;
-      done();
     });
   });
 
-  it('should get a comments page without a page token', function (done) {
+  it('should get a comments page without a page token', function () {
     this.timeout(60000);
-    getCommentsPage('pkwOrteyQtY', null).then(function (page) {
+    return getCommentsPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.have.a.property('comments').that.is.an('array');
       expect(page.comments).to.have.length.above(1);
       expect(page).to.have.a.property('nextPageToken').that.is.a('string');
@@ -44,14 +43,13 @@ describe('Comment Pager', function () {
           expect(c.replies).to.have.length.above(0);
         }
       });
-      done();
     });
   });
 
-  it('should get a different comments page with a page token', function (done) {
+  it('should get a different comments page with a page token', function () {
     this.timeout(60000);
-    getCommentsPage('pkwOrteyQtY', null).then(function (page1) {
-      getCommentsPage('pkwOrteyQtY', page1.nextPageToken).then(function (page2) {
+    return getCommentsPage('pkwOrteyQtY', null).then(function (page1) {
+      return getCommentsPage('pkwOrteyQtY', page1.nextPageToken).then(function (page2) {
         expect(page1).to.not.deep.equal(page2);
         expect(page2).to.have.a.property('comments').that.is.an('array');
         expect(page2.comments).to.have.length.above(1);
@@ -72,14 +70,13 @@ describe('Comment Pager', function () {
           }
         });
 
-        done();
       });
     });
   });
 
-  it('should include video information', function (done) {
+  it('should include video information', function () {
     this.timeout(60000);
-    getCommentsPage('pkwOrteyQtY', null).then(function (page) {
+    return getCommentsPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoCommentCount').that.is.a('number');
       expect(page.videoCommentCount).to.be.above(0);
@@ -87,7 +84,6 @@ describe('Comment Pager', function () {
       expect(page.videoTitle.length).to.be.above(0);
       expect(page).to.have.a.property('videoThumbnail').that.is.a('string');
       expect(page.videoThumbnail.length).to.be.above(0);
-      done();
     });
   });
 });
