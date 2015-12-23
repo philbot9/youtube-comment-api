@@ -1,8 +1,16 @@
 var _ = require('lodash');
 var debug = require('debug')('youtube-comment-api');
+
+var config = require('./lib/config');
 var getCommentPage = require('./lib/comment-pager');
 
-module.exports = function (videoID, pageToken, cb) {
+module.exports = function (userConfig) {
+  userConfig = userConfig || {};
+  config(userConfig);
+  return fetchCommentPage;
+}
+
+var fetchCommentPage = function (videoID, pageToken, cb) {
   if (!cb && pageToken && _.isFunction(pageToken)) {
     cb = pageToken;
     pageToken = null;

@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
 var getSessionToken = require('../lib/youtube-session.js');
+
 describe('Youtube Session', function () {
   it('should export a function', function () {
     expect(getSessionToken).to.be.a('function');

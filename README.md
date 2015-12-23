@@ -21,12 +21,13 @@ $ npm install youtube-comment-api
 `http//www.youtube.com/watch?v={videoID}`
 
 ``` javascript
-var fetchCommentPage = require('youtube-comment-api');
+var fetchCommentPage = require('youtube-comment-api')(config)
 fetchCommentPage(videoID, pageToken, cb);
 ```
 
 | Parameter     | Meaning       |
 | ------------- |---------------|
+| config        | (optional) module coniguration |
 | videoID       | ID of youtube Video |
 | pageToken     | (optional) token of page to be requested |
 | callback      | (optional) callback function      |
@@ -34,7 +35,7 @@ fetchCommentPage(videoID, pageToken, cb);
 ### Promises API
 
 ``` javascript
-var fetchCommentPage = require('youtube-comment-api');
+var fetchCommentPage = require('youtube-comment-api')();
 // request first page of comments (most recent)
 fetchCommentPage('{videoID}').then(function (commentPage) {
   console.log(commentPage);
@@ -50,7 +51,7 @@ fetchCommentPage('{videoID}').then(function (commentPage) {
 ### Callback API
 
 ``` javascript
-var fetchCommentPage = require('youtube-comment-api');
+var fetchCommentPage = require('youtube-comment-api')();
 // request first page of comments (most recent)
 fetchCommentPage('{videoID}', function (err, commentPage) {
   if (err) throw err;
@@ -62,6 +63,29 @@ fetchCommentPage('{videoID}', function (err, commentPage) {
   });
 });
 ```
+
+### Configuration
+
+Below are the possible configuration options and their default values.
+
+```
+{
+  includeReplies: true,
+  includeVideoInfo: true,
+  sessionTimeout: 60 * 30, // 30 minutes
+  cacheDuration: 60 * 30, // 30 minutes
+  cacheInterval: 60 * 5 // 5 minutes
+}
+```
+
+| Option              | Meaning       |
+| ------------------- |---------------|
+| includeReplies      | Also fetch replies for each comment (default: true) |
+| includeVideoInfo    | Fetch meta information about video (default: true) |
+| sessionTimeout      | Number of seconds after which the acquired session token is disgarded and a new one is requested. (default: 30 mins) |
+| cacheDuration       | Number of seconds after which cached video meta info will be disgarded (default: 30 mins) |
+| cacheInterval       | Length of the interval in seconds at which the video meta info cache entries are checked and disgarded if expired. (default 5 mins) |
+
 
 ## Result
 

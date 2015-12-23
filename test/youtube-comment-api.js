@@ -1,27 +1,29 @@
 var expect = require('chai').expect;
-var fetchCommentPage = require('../index');
+var fetchCommentPage = require('../index')({includeReplies: true, includeVideoInfo: true});
 
 describe('YouTube Comment API', function () {
   it('should export a function', function () {
     expect(require('../index')).to.be.a('function');
   });
 
-  it('should support callback functions', function () {
+  it('should support callback functions', function (done) {
     this.timeout(60000);
-    return fetchCommentPage('pkwOrteyQtY', function (err, page) {
+    fetchCommentPage('pkwOrteyQtY', function (err, page) {
       expect(err).not.to.exist;
       expect(page).to.exist;
       expect(page).to.have.a.property('videoTitle').which.is.a('string');
       expect(page).to.have.a.property('comments').which.is.a('array');
       expect(page.comments).to.have.length.above(0);
+      done();
     });
   });
 
-  it('should return errors for callback functions', function () {
+  it('should return errors for callback functions', function (done) {
     this.timeout(60000);
-    return fetchCommentPage('fakeID', function (err, page) {
+    fetchCommentPage('fakeID', function (err, page) {
       expect(err).to.exist;
       expect(page).not.to.exist;
+      done();
     });
   });
 
