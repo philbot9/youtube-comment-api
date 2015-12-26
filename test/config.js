@@ -17,6 +17,7 @@ describe('Configuration', function () {
     expect(config()).to.deep.equal({
       includeReplies: true,
       includeVideoInfo: true,
+      fetchRetries: 3,
       sessionTimeout: 60 * 30,
       cacheDuration: 60 * 30,
       cacheInterval: 60 * 5
@@ -29,6 +30,7 @@ describe('Configuration', function () {
     expect(config()).to.deep.equal({
       includeReplies: false,
       includeVideoInfo: true,
+      fetchRetries: 3,
       sessionTimeout: 60 * 60,
       cacheDuration: 60 * 30,
       cacheInterval: 60 * 5
@@ -38,11 +40,12 @@ describe('Configuration', function () {
   it('should retain old configuration values', function () {
     var config = require('../lib/config');
     config({sessionTimeout: 60 * 90});
-    config({cacheDuration: 60 * 90, includeReplies: true, includeVideoInfo: false});
+    config({cacheDuration: 60 * 90, includeReplies: true, includeVideoInfo: false, fetchRetries: 4});
     
     expect(config()).to.deep.equal({
       includeReplies: true,
       includeVideoInfo: false,
+      fetchRetries: 4,
       sessionTimeout: 60 * 90,
       cacheDuration: 60 * 90,
       cacheInterval: 60 * 5
@@ -54,6 +57,7 @@ describe('Configuration', function () {
     config({
       includeReplies: true,
       includeVideoInfo: true,
+      fetchRetries: 3,
       sessionTimeout: 60 * 90,
       cacheDuration: 60 * 90
     });
@@ -61,6 +65,7 @@ describe('Configuration', function () {
     expect(require('../lib/config')()).to.deep.equal({
       includeReplies: true,
       includeVideoInfo: true,
+      fetchRetries: 3,
       sessionTimeout: 60 * 90,
       cacheDuration: 60 * 90,
       cacheInterval: 60 * 5

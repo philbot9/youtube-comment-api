@@ -69,22 +69,24 @@ fetchCommentPage('{videoID}', function (err, commentPage) {
 Below are the possible configuration options and their default values.
 
 ```
-{
+var fetchCommentPage = require('youtube-comment-api')({
   includeReplies: true,
   includeVideoInfo: true,
+  fetchRetries: 3,
   sessionTimeout: 60 * 30, // 30 minutes
   cacheDuration: 60 * 30, // 30 minutes
   cacheInterval: 60 * 5 // 5 minutes
-}
+});
 ```
 
 | Option              | Meaning       |
 | ------------------- |---------------|
 | includeReplies      | Also fetch replies for each comment (default: true) |
 | includeVideoInfo    | Fetch meta information about video (default: true) |
-| sessionTimeout      | Number of seconds after which the acquired session token is disgarded and a new one is requested. (default: 30 mins) |
-| cacheDuration       | Number of seconds after which cached video meta info will be disgarded (default: 30 mins) |
-| cacheInterval       | Length of the interval in seconds at which the video meta info cache entries are checked and disgarded if expired. (default 5 mins) |
+| fetchRetries        | The number of retries if a fetch fails (default: 3) |
+| sessionTimeout      | Number of seconds after which the acquired session token is discarded and a new one is requested. (default: 30 mins) |
+| cacheDuration       | Number of seconds after which cached video meta info will be discarded (default: 30 mins) |
+| cacheInterval       | Length of the interval in seconds at which the video meta info cache entries are checked and discarded if expired. (default 5 mins) |
 
 
 ## Result
