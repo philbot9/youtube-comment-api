@@ -31,7 +31,8 @@
     "debug": "^2.2.0",
     "lodash": "^3.10.1",
     "native-promise-only": "^0.8.1",
-    "request-promise": "^0.4.3"
+    "request-promise": "^0.4.3",
+    "youtube-info": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^3.3.0",
