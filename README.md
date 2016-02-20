@@ -84,7 +84,7 @@ var fetchCommentPage = require('youtube-comment-api')({
 | includeVideoInfo    | Fetch meta information about video (default: true) |
 | fetchRetries        | The number of retries if a fetch fails (default: 3) |
 | sessionTimeout      | Number of seconds after which the acquired session token expires. (default: 30 mins) |
-| cacheDuration       | Number of seconds after which cached video meta info expires (default: 30 mins) |
+| cacheDuration       | Number of seconds after which cached meta info expires. Set to false to disable caching. (default: 30 mins) |
 
 ## Result
 
