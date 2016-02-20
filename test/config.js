@@ -18,8 +18,7 @@ describe('Configuration', function () {
       includeVideoInfo: true,
       fetchRetries: 3,
       sessionTimeout: 60 * 30,
-      cacheDuration: 60 * 30,
-      cacheInterval: 60 * 5
+      cacheDuration: 60 * 30
     })
   })
 
@@ -31,8 +30,7 @@ describe('Configuration', function () {
       includeVideoInfo: true,
       fetchRetries: 3,
       sessionTimeout: 60 * 60,
-      cacheDuration: 60 * 30,
-      cacheInterval: 60 * 5
+      cacheDuration: 60 * 30
     })
   })
 
@@ -46,8 +44,7 @@ describe('Configuration', function () {
       includeVideoInfo: false,
       fetchRetries: 4,
       sessionTimeout: 60 * 90,
-      cacheDuration: 60 * 90,
-      cacheInterval: 60 * 5
+      cacheDuration: 60 * 90
     })
   })
 
@@ -66,8 +63,7 @@ describe('Configuration', function () {
       includeVideoInfo: true,
       fetchRetries: 3,
       sessionTimeout: 60 * 90,
-      cacheDuration: 60 * 90,
-      cacheInterval: 60 * 5
+      cacheDuration: 60 * 90
     })
   })
 
