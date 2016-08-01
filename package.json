@@ -1,10 +1,11 @@
 {
   "name": "youtube-comment-api",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Youtube comment API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "format": "standard-format --write"
   },
   "repository": {
     "type": "git",
