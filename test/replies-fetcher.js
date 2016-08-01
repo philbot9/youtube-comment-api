@@ -22,7 +22,7 @@ describe('Replies Fetcher', function () {
   });
 
   it('should give an error for an invalid video ID', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return fetchReplies('fakeId', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       expect(page).not.to.exist;
     }).catch(function (error) {
@@ -31,7 +31,7 @@ describe('Replies Fetcher', function () {
   });
 
   it('should give an error for an invalid comment ID', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return fetchReplies('eKEwL-10s7E', 'yadayada').then(function (page) {
       expect(page).not.to.exist;
     }).catch(function (error) {
@@ -40,7 +40,7 @@ describe('Replies Fetcher', function () {
   });
 
   it('should get replies to a comment', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return fetchReplies('eKEwL-10s7E', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       expect(page).to.have.a.property('html');
       expect(page.html).to.be.a('string');
@@ -49,7 +49,7 @@ describe('Replies Fetcher', function () {
   });
 
   it('should return valid HTML for replies', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return fetchReplies('eKEwL-10s7E', 'z13oy5eavyzketqp204cjvjadqu5xttiwhk').then(function (page) {
       var $ = cheerio.load(page.html);
       expect($('.comment-item')).to.have.a.property('0');

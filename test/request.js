@@ -20,7 +20,7 @@ describe('Request', function () {
   });
 
   it('function \'get\' should send a GET request', function () {
-    this.timeout(30000);
+    this.timeout(180000);
     return request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (responseText) {
       expect(responseText).to.be.a('string');
       expect(responseText).to.have.length.above(1);
@@ -28,7 +28,7 @@ describe('Request', function () {
   });
 
   it('function \'get\' should receive a cookie', function () {
-    this.timeout(30000);
+    this.timeout(180000);
     return request.get('https://www.youtube.com/all_comments?v=MfM7Y9Pcdzw').then(function (res) {
       expect(request.CookieJar).to.have.a.property('_jar')
         .which.has.a.property('store')
@@ -47,7 +47,7 @@ describe('Request', function () {
   });
 
   it('function \'post\' should send a POST request', function () {
-    this.timeout(30000);
+    this.timeout(180000);
     return getSessionToken('MfM7Y9Pcdzw').then(function (sessionToken) {
       return request.post('https://www.youtube.com/comment_ajax?action_load_comments=1&order_by_time=True&filter=MfM7Y9Pcdzw', {
         'session_token': sessionToken,

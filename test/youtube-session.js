@@ -7,7 +7,7 @@ describe('Youtube Session', function () {
   });
 
   it('should get a session token', function () {
-    this.timeout(30000);
+    this.timeout(180000);
     return getSessionToken('eKEwL-10s7E').then(function (sessionToken) {
       expect(sessionToken).to.be.a('string');
       expect(sessionToken).to.have.length.above(1);
@@ -15,7 +15,7 @@ describe('Youtube Session', function () {
   });
 
   it('should remember a session token', function () {
-    this.timeout(30000);
+    this.timeout(180000);
     return getSessionToken('eKEwL-10s7E').then(function (sessionToken1) {
       return getSessionToken('eKEwL-10s7E').then(function (sessionToken2) {
         expect(sessionToken1).to.equal(sessionToken2);

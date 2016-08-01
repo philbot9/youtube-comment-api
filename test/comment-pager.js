@@ -14,7 +14,7 @@ describe('Comment Pager', function () {
   });
 
   it('should give an error for an invalid video ID', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return getCommentsPage('fakeID', null).then(function (page) {
       expect(page).not.to.exist;
     }).catch(function (error) {
@@ -23,7 +23,7 @@ describe('Comment Pager', function () {
   });
 
   it('should get a comments page without a page token', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return getCommentsPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.have.a.property('comments').that.is.an('array');
       expect(page.comments).to.have.length.above(1);
@@ -47,7 +47,7 @@ describe('Comment Pager', function () {
   });
 
   it('should get a different comments page with a page token', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return getCommentsPage('pkwOrteyQtY', null).then(function (page1) {
       return getCommentsPage('pkwOrteyQtY', page1.nextPageToken).then(function (page2) {
         expect(page1).to.not.deep.equal(page2);
@@ -75,7 +75,7 @@ describe('Comment Pager', function () {
   });
 
   it('should include video information', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     return getCommentsPage('pkwOrteyQtY', null).then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoCommentCount').that.is.a('number');
