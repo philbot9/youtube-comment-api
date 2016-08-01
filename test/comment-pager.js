@@ -24,7 +24,7 @@ describe('Comment Pager', function () {
 
   it('should get a comments page without a page token', function () {
     this.timeout(180000);
-    return getCommentsPage('pkwOrteyQtY', null).then(function (page) {
+    return getCommentsPage('BUCnjlTfXDw', null).then(function (page) {
       expect(page).to.have.a.property('comments').that.is.an('array');
       expect(page.comments).to.have.length.above(1);
       expect(page).to.have.a.property('nextPageToken').that.is.a('string');
@@ -48,8 +48,8 @@ describe('Comment Pager', function () {
 
   it('should get a different comments page with a page token', function () {
     this.timeout(180000);
-    return getCommentsPage('pkwOrteyQtY', null).then(function (page1) {
-      return getCommentsPage('pkwOrteyQtY', page1.nextPageToken).then(function (page2) {
+    return getCommentsPage('BUCnjlTfXDw', null).then(function (page1) {
+      return getCommentsPage('BUCnjlTfXDw', page1.nextPageToken).then(function (page2) {
         expect(page1).to.not.deep.equal(page2);
         expect(page2).to.have.a.property('comments').that.is.an('array');
         expect(page2.comments).to.have.length.above(1);
@@ -76,7 +76,7 @@ describe('Comment Pager', function () {
 
   it('should include video information', function () {
     this.timeout(180000);
-    return getCommentsPage('pkwOrteyQtY', null).then(function (page) {
+    return getCommentsPage('BUCnjlTfXDw', null).then(function (page) {
       expect(page).to.exist;
       expect(page).to.have.a.property('videoCommentCount').that.is.a('number');
       expect(page.videoCommentCount).to.be.above(0);
