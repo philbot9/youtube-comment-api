@@ -4,6 +4,10 @@ var debug = require('debug')('youtube-comment-api')
 var config = require('./lib/config')
 var getCommentPage = require('./lib/comment-pager')
 
+
+console.error('WARNING: This module is deprecated. Please see https://github.com/philbot9/youtube-comment-api#deprecated for details. Pull requests welcome.')
+
+
 module.exports = function (userConfig) {
   userConfig = userConfig || {}
   config(userConfig)
