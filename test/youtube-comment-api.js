@@ -102,10 +102,13 @@ describe('YouTube Comment API', function () {
     })
   })
 
-  it('should get a different comments page with a page token using callbacks', function () {
+  it.only('should get a different comments page with a page token using callbacks', function (done) {
     this.timeout(180000)
-    return fetchCommentPage('BUCnjlTfXDw', function (err, page1) {
-      return fetchCommentPage('BUCnjlTfXDw', page1.nextPageToken, function (err, page2) {
+    fetchCommentPage('BUCnjlTfXDw', function (err, page1) {
+      fetchCommentPage('BUCnjlTfXDw', page1.nextPageToken, function (err, page2) {
+        if (err) {
+          return done(err)
+        }
         expect(page1).to.not.deep.equal(page2)
         expect(page2).to.have.a.property('comments').that.is.an('array')
         expect(page2.comments).to.have.length.above(1)
@@ -124,6 +127,7 @@ describe('YouTube Comment API', function () {
             expect(c).to.have.a.property('replies').that.is.an('array')
             expect(c.replies).to.have.length.above(0)
           }
+          done()
         })
       })
     })
