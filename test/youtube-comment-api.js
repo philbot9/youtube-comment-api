@@ -78,7 +78,7 @@ describe('YouTube Comment API', function () {
   it('should get a different comments page with a page token', function () {
     this.timeout(180000)
     return fetchCommentPage('BUCnjlTfXDw', null).then(function (page1) {
-      fetchCommentPage('BUCnjlTfXDw', page1.nextPageToken).then(function (page2) {
+      return fetchCommentPage('BUCnjlTfXDw', page1.nextPageToken).then(function (page2) {
         expect(page1).to.not.deep.equal(page2)
         expect(page2).to.have.a.property('comments').that.is.an('array')
         expect(page2.comments).to.have.length.above(1)
