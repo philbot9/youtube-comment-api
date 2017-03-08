@@ -2,6 +2,12 @@
 
 [![Build Status](https://travis-ci.org/philbot9/youtube-comment-api.svg?branch=master)](https://travis-ci.org/philbot9/youtube-comment-api)
 
+## DEPRECATED!!!
+
+YouTube has made some changes to the way comments are handled. Therefore, this module no longer works. I have written an alternative module that uses Tasks to handle async operations [youtube-comments-task](https://github.com/philbot9/youtube-comments-task).
+
+It should be relatively easy to fix this module, but I don't have the time at the moment. **Pull requests are of course welcome.**
+
 ## Purpose
 
 A Node.js API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video on demand.
