@@ -2,13 +2,34 @@
 
 [![Build Status](https://travis-ci.org/philbot9/youtube-comment-api.svg?branch=master)](https://travis-ci.org/philbot9/youtube-comment-api)
 
-## DEPRECATED!!!
-
-YouTube has made some changes to the way comments are handled. Therefore, this module no longer works. I have written an alternative module that uses Tasks to handle async operations [youtube-comments-task](https://github.com/philbot9/youtube-comments-task).
-
-It should be relatively easy to fix this module, but I don't have the time at the moment. **Pull requests are of course welcome.**
-
 ## Purpose
+
+This package is a Promise wrapper around [youtube-comments-task](https://github.com/philbot9/youtube-comments-task) for anyone who wants to use Promises over Tasks.
+
+## Usage
+
+`fetchCommentPage(videoId[, pageToken])`
+
+The module exports a single function which accepts a videoId parameter and an optional pageToken. If no pageToken is given, the module fetches the first page of comments.
+
+**For detailed documentation of the response please see [youtube-comments-task](https://github.com/philbot9/youtube-comments-task).**
+
+## Example
+
+``` javascript
+const fetchCommentPage = require('youtube-comment-api')
+const videoId = 'h_tkIpwbsxY'
+
+fetchCommentPage(videoId)
+  .then(commentPage => {
+    console.log(commentPage.comments)
+    return fetchCommentPage(videoId, commentPage.nextPageToken)
+  })
+  .then(commentPage => {
+    console.log(commentPage.comments)
+  })
+```
+
 
 A Node.js API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video on demand.
 
