@@ -1,4 +1,4 @@
-var { expect } = require('chai')
+var expect = require('chai').expect
 var fetchComments = require('../lib/youtube-comments-task-wrapper')
 var Task = require('data.task')
 

@@ -1,4 +1,4 @@
-var { expect } = require('chai')
+var expect = require('chai').expect
 var td = require('testdouble')
 var Task = require('data.task')
 var clearRequire = require('clear-require')

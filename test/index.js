@@ -1,4 +1,4 @@
-var { expect } = require('chai')
+var expect = require('chai').expect
 
 describe('index.js', function () {
   it('exports a function', function () {
@@ -8,7 +8,7 @@ describe('index.js', function () {
 
   it('function returns a promise', function () {
     var fetchComments = require('../index')
-    const res = fetchComments().catch(() => {})
+    const res = fetchComments().catch(function () {})
     expect(res).to.be.an.instanceof(Promise)
   })
 })
