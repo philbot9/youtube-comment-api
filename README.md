@@ -4,15 +4,44 @@
 
 ## Purpose
 
-This package is a Promise wrapper around [youtube-comments-task](https://github.com/philbot9/youtube-comments-task) for anyone who wants to use Promises over Tasks.
+This package is a Promise wrapper for [youtube-comments-task](https://github.com/philbot9/youtube-comments-task) for anyone who wants to use Promises over Tasks.
 
 ## Usage
 
-`fetchCommentPage(videoId[, pageToken])`
+The module exports a single function:
 
-The module exports a single function which accepts a videoId parameter and an optional pageToken. If no pageToken is given, the module fetches the first page of comments.
+`fetchComments(videoId[,pageToken])`
 
-**For detailed documentation of the response please see [youtube-comments-task](https://github.com/philbot9/youtube-comments-task).**
+The function accepts the YouTube `videoId` and an optional `pageToken`, and returns a Promise that resolves to the corresponding page of comments. If the `pageToken` is not provided it fetches the first page of comments.
+
+The result is an object with the following properties.
+
+``` javascript
+{
+  comments: [ { comment }, { comment }, ... ],
+  nextPageToken: 'nextpagetokenhere'
+}
+```
+
+## Comment Data
+
+```
+{
+  id: {{ comment id}},
+  author: {{ comment author name }},
+  authorLink: {{ comment author link (channel) }},
+  authorThumb: {{ comment author avatar thumb url }},
+  text: {{ comment text }},
+  likes: {{ comment up-votes }},
+  time: {{ how long ago the comment was posted (relative, e.g. '1 year ago') }},
+  timestamp: {{ timestamp when comment was posted in milliseconds (absolute, e.g. 1457661439642 }},
+  edited: {{ whether the comment was edited by the authro (true/false) }},
+  hasReplies: {{ whether the comment has replies (true/fasle) }},
+  repliesToken: {{ token used to fetch replies for the comment }},
+  numReplies: {{ number of replies }},
+  replies: [ {{ reply objects (same fields as comments) }} ]
+}
+```
 
 ## Example
 
@@ -30,117 +59,18 @@ fetchCommentPage(videoId)
   })
 ```
 
+## Errors
 
-A Node.js API for the YouTube comment system. Scrapes comments and comment information from a given YouTube video on demand.
+Errors are as descriptive and (hopefully) useful as possible. Private, deleted, and unavailable videos are detected, and an appropriate error type is assigned. Error types are defined in [/src/lib/error-types.js](/src/lib/error-types.js).
 
-**This project is in no way affiliated with YouTube.**
-
-## Installation
-
-Install as a module via npm.
-
-```bash
-$ npm install youtube-comment-api
-```
-
-## Usage
-
-`http//www.youtube.com/watch?v={videoID}`
-
-``` javascript
-var fetchCommentPage = require('youtube-comment-api')(config)
-fetchCommentPage(videoID, pageToken, cb);
-```
-
-| Parameter     | Meaning       |
-| ------------- |---------------|
-| config        | (optional) module coniguration |
-| videoID       | ID of youtube Video |
-| pageToken     | (optional) token of page to be requested |
-| callback      | (optional) callback function      |
-
-### Promises API
-
-``` javascript
-var fetchCommentPage = require('youtube-comment-api')();
-// request first page of comments (most recent)
-fetchCommentPage('{videoID}').then(function (commentPage) {
-  console.log(commentPage);
-  return commentPage.nextPageToken;
-}).then(function (pageToken) {
-  // request next page
-  return fetchCommentPage('{videoID}', pageToken)
-}).then(function (commentPage) {
-  console.log(commentPage);
-});
-```
-
-### Callback API
-
-``` javascript
-var fetchCommentPage = require('youtube-comment-api')();
-// request first page of comments (most recent)
-fetchCommentPage('{videoID}', function (err, commentPage) {
-  if (err) throw err;
-  console.log(commentPage);
-  // request next page
-  fetchCommentPage('{videoID}', commentPage.nextPageToken, function(err, commentPage) {
-    if (err) throw err;
-    console.log(commentPage);
-  });
-});
-```
-
-### Configuration
-
-Below are the possible configuration options and their default values.
-
-```
-var fetchCommentPage = require('youtube-comment-api')({
-  includeReplies: true,
-  includeVideoInfo: true,
-  fetchRetries: 3,
-  sessionTimeout: 60 * 30, // 30 minutes
-  cacheDuration: 60 * 30 // 30 minutes
-});
-```
-
-| Option              | Meaning       |
-| ------------------- |---------------|
-| includeReplies      | Fetch replies for each comment (default: true) |
-| includeVideoInfo    | Fetch meta information about video (default: true) |
-| fetchRetries        | The number of retries if a fetch fails (default: 3) |
-| sessionTimeout      | Number of seconds after which the acquired session token expires. (default: 30 mins) |
-| cacheDuration       | Number of seconds after which cached meta info expires. Set to false to disable caching. (default: 30 mins) |
-
-## Result
+A typical error object has the following fields.
 
 ```
 {
-  pageToken: {{ page token of current page }},
-  nextPageToken: {{ page token of next page }},
-  videoCommentCount: {{ number of comments on the video }},
-  videoTitle: {{ video title }},
-  videoThumbnail: {{ URL to video Thumbnail }},
-  comments: [
-	{
-      id: {{ comment ID }},
-      user: {{ username of author }},
-      date: {{ how long ago the comment was posted }},
-      commentText: {{ the comment }},
-      timestamp: {{ timestamp based on date }},
-      likes: {{ number of upvotes }},
-      hasReplies: {{ whether this comment has replies }},
-      numberOfReplies: {{ number of replies to the comment }},
-      replies [
-        {
-          {{ ... same fields as comment }}
-        },
-        ...
-      ],
-      ...
-    }
-  ]
+  type: {{ error type }},
+  message: {{ error message }},
+  videoId: {{ YouTube video id }},
+  component: {{ module component }},
+  operation: {{ operation that failed }}
 }
-
 ```
