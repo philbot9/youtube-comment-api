@@ -35,8 +35,8 @@ The result is an object with the following properties.
   likes: {{ comment up-votes }},
   time: {{ how long ago the comment was posted (relative, e.g. '1 year ago') }},
   timestamp: {{ timestamp when comment was posted in milliseconds (absolute, e.g. 1457661439642 }},
-  edited: {{ whether the comment was edited by the authro (true/false) }},
-  hasReplies: {{ whether the comment has replies (true/fasle) }},
+  edited: {{ whether the comment was edited by the author (true/false) }},
+  hasReplies: {{ whether the comment has replies (true/false) }},
   repliesToken: {{ token used to fetch replies for the comment }},
   numReplies: {{ number of replies }},
   replies: [ {{ reply objects (same fields as comments) }} ]
@@ -57,20 +57,4 @@ fetchCommentPage(videoId)
   .then(commentPage => {
     console.log(commentPage.comments)
   })
-```
-
-## Errors
-
-Errors are as descriptive and (hopefully) useful as possible. Private, deleted, and unavailable videos are detected, and an appropriate error type is assigned. Error types are defined in [/src/lib/error-types.js](/src/lib/error-types.js).
-
-A typical error object has the following fields.
-
-```
-{
-  type: {{ error type }},
-  message: {{ error message }},
-  videoId: {{ YouTube video id }},
-  component: {{ module component }},
-  operation: {{ operation that failed }}
-}
 ```
