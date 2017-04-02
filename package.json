@@ -1,6 +1,6 @@
 {
   "name": "youtube-comment-api",
-  "version": "4.0.0",
+  "version": "2.1.2",
   "description": "Youtube comment API",
   "main": "index.js",
   "scripts": {
