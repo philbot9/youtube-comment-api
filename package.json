@@ -32,7 +32,9 @@
     "clear-require": "^2.0.0",
     "data.task": "^3.1.1",
     "mocha": "^3.2.0",
-    "testdouble": "^2.0.3",
+    "testdouble": "^2.0.3"
+  },
+  "dependencies": {
     "youtube-comments-task": "^1.3.5"
   }
 }
