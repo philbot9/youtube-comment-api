@@ -1,6 +1,8 @@
 # Youtube Comment API
 
-[![Build Status](https://travis-ci.org/philbot9/youtube-comment-api.svg?branch=master)](https://travis-ci.org/philbot9/youtube-comment-api)
+## Deprecation Notice
+
+This package has been deprecated and no longer works.
 
 ## Purpose
 
@@ -16,7 +18,7 @@ The function accepts the YouTube `videoId` and an optional `pageToken`, and retu
 
 The result is an object with the following properties.
 
-``` javascript
+```javascript
 {
   comments: [ { comment }, { comment }, ... ],
   nextPageToken: 'nextpagetokenhere'
@@ -45,7 +47,7 @@ The result is an object with the following properties.
 
 ## Example
 
-``` javascript
+```javascript
 const fetchCommentPage = require('youtube-comment-api')
 const videoId = 'h_tkIpwbsxY'
 
